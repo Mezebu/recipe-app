@@ -1,25 +1,74 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { Grid, Container } from "@material-ui/core";
 
-function App() {
+import Recipe from "./components/Recipe/Recipe";
+import AppBar from "./components/AppBar/AppBar";
+
+import styles from "./App.module.css";
+
+const App = () => {
+  const [recipes, setRecipes] = useState([]);
+  const [search, setSearch] = useState("");
+  const [query, setQuery] = useState("rice");
+
+  const appDetails = {
+    apiID: process.env.REACT_APP_API_ID,
+    apiKey: process.env.REACT_APP_API_KEY,
+  };
+
+  const baseUrl = `https://api.edamam.com/search?q=${query}&app_id=${appDetails.apiID}&app_key=${appDetails.apiKey}`;
+
+  const getRecipes = async () => {
+    try {
+      const { data } = await axios.get(baseUrl);
+      setRecipes(data.hits);
+      setSearch("");
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getRecipes();
+  }, [query]);
+
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+  };
+
+  const getSearch = (e) => {
+    e.preventDefault();
+    setQuery(search);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={styles.App}>
+      <AppBar
+        getSearch={getSearch}
+        handleSearch={handleSearch}
+        search={search}
+      />
+      <div className={styles.spacing} />
+      <Container>
+        <Grid container spacing={2}>
+          {recipes.map(({ recipe }) => (
+            <Recipe
+              key={recipe.label}
+              title={recipe.label}
+              calories={recipe.calories}
+              cuisine={recipe.cuisineType}
+              ingredients={recipe.ingredients}
+              image={recipe.image}
+              healthInfo={recipe.dietLabels}
+              dishType={recipe.dishType}
+            />
+          ))}
+        </Grid>
+      </Container>
     </div>
   );
-}
+};
 
 export default App;
