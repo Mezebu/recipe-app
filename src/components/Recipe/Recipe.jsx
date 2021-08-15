@@ -71,12 +71,15 @@ const Recipe = ({ dishType, calories, image, cuisine, ingredients, title, health
         />
         <CardMedia className={classes.media} image={image} title={title} />
         <CardContent>
-          <Typography variant="body2" color="textPrimary">
+          {title && (
+            <>
+              <Typography variant="body2" color="textPrimary">
             <strong>Calories</strong> : {Math.ceil(calories)} kcal <br />
             <strong>Diet Labels</strong> : {healthInfo.join(", ")} <br />
             <strong>Dish Type</strong> : {dishType}
           </Typography>
-          
+            </>
+          )} 
         </CardContent>
         <CardActions disableSpacing>
           <IconButton
