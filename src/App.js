@@ -32,7 +32,7 @@ const App = () => {
 
   useEffect(() => {
     getRecipes();
-  }, [query]);
+  }, [query]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleSearch = (e) => {
     setSearch(e.target.value);

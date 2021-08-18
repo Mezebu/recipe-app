@@ -98,8 +98,8 @@ const Recipe = ({ dishType, calories, image, cuisine, ingredients, title, health
             <Typography style={{ fontWeight: "600" }} paragraph>
               Ingredients:
             </Typography>
-            {ingredients.map(({ text, weight }) => (
-              <Typography key={weight} paragraph>
+            {ingredients.map(({ text, id }) => (
+              <Typography key={id} paragraph>
                 {text}
               </Typography>
             ))}
