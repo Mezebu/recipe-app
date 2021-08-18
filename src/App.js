@@ -12,12 +12,12 @@ const App = () => {
   const [search, setSearch] = useState("");
   const [query, setQuery] = useState("rice");
 
-  const appDetails = {
+  const apiDetails = {
     apiID: process.env.REACT_APP_API_ID,
     apiKey: process.env.REACT_APP_API_KEY,
   };
 
-  const baseUrl = `https://api.edamam.com/search?q=${query}&app_id=${appDetails.apiID}&app_key=${appDetails.apiKey}`;
+  const baseUrl = `https://api.edamam.com/search?q=${query}&app_id=${apiDetails.apiID}&app_key=${apiDetails.apiKey}`;
 
   const getRecipes = async () => {
     try {
