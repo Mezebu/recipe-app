@@ -13,8 +13,8 @@ const App = () => {
   const [query, setQuery] = useState("rice");
 
   const apiDetails = {
-    apiID: process.env.REACT_APP_API_ID,
-    apiKey: process.env.REACT_APP_API_KEY,
+    apiID: "dd901a11",
+    apiKey: "8b93cfe3bd23593061a1a1c09ca83f06",
   };
 
   const baseUrl = `https://api.edamam.com/search?q=${query}&app_id=${apiDetails.apiID}&app_key=${apiDetails.apiKey}`;
