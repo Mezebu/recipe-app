@@ -24,7 +24,6 @@ const App = () => {
       const { data } = await axios.get(baseUrl);
       setRecipes(data.hits);
       setSearch("");
-      console.log(data);
     } catch (error) {
       console.log(error);
     }
