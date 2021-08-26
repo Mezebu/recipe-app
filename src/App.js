@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Grid, Container } from "@material-ui/core";
+import { Grid, Container, ThemeProvider } from "@material-ui/core";
 
 import Recipe from "./components/Recipe/Recipe";
 import AppBar from "./components/AppBar/AppBar";
 
 import styles from "./App.module.css";
+import { theme } from "./components/styles";
 
 const App = () => {
   const [recipes, setRecipes] = useState([]);
@@ -44,28 +45,30 @@ const App = () => {
 
   return (
     <div className={styles.App}>
-      <AppBar
-        getSearch={getSearch}
-        handleSearch={handleSearch}
-        search={search}
-      />
-      <div className={styles.spacing} />
-      <Container>
-        <Grid container spacing={2}>
-          {recipes.map(({ recipe }) => (
-            <Recipe
-              key={recipe.label}
-              title={recipe.label}
-              calories={recipe.calories}
-              cuisine={recipe.cuisineType}
-              ingredients={recipe.ingredients}
-              image={recipe.image}
-              healthInfo={recipe.dietLabels}
-              dishType={recipe.dishType}
-            />
-          ))}
-        </Grid>
-      </Container>
+      <ThemeProvider theme={theme}>
+        <AppBar
+          getSearch={getSearch}
+          handleSearch={handleSearch}
+          search={search}
+        />
+        <div className={styles.spacing} />
+        <Container>
+          <Grid container spacing={2}>
+            {recipes.map(({ recipe }) => (
+              <Recipe
+                key={recipe.label}
+                title={recipe.label}
+                calories={recipe.calories}
+                cuisine={recipe.cuisineType}
+                ingredients={recipe.ingredients}
+                image={recipe.image}
+                healthInfo={recipe.dietLabels}
+                dishType={recipe.dishType}
+              />
+            ))}
+          </Grid>
+        </Container>
+      </ThemeProvider>
     </div>
   );
 };
