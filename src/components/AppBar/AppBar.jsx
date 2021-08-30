@@ -11,7 +11,7 @@ const NavBar = ({ search, handleSearch, getSearch }) => {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" className={classes.appBar}>
+      <AppBar position="fixed" className={classes.appBar}>
         <Container>
           <Toolbar>
             <IconButton

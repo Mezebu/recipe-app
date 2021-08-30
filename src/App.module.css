@@ -24,9 +24,6 @@ a {
 
 html {
   font-size: 100%;
-}
-
-.App {
   background: -webkit-linear-gradient(
     to right,
     #eecda3,
@@ -36,5 +33,5 @@ html {
 }
 
 .spacing {
-  margin: 20px 0;
+  margin: 70px 0;
 }
