@@ -1,4 +1,4 @@
-import { Typography } from "@material-ui/core";
+import { Container, Typography } from "@material-ui/core";
 import React from "react";
 import food from "../../assets/food.png";
 
@@ -9,20 +9,22 @@ const Home = () => {
 
   return (
     <>
-      <div className={classes.root}>
-        <div>
-          <Typography
-            variant="body2"
-            color="textPrimary"
-            className={classes.fonts}
-          >
-            It's not just food, it's an experience.
-          </Typography>
+      <Container>
+        <div className={classes.root}>
+          <div>
+            <Typography
+              variant="body2"
+              color="textPrimary"
+              className={classes.fonts}
+            >
+              It's not just food, it's an experience.
+            </Typography>
+          </div>
+          <div>
+            <img src={food} alt="dish" className={classes.image} />
+          </div>
         </div>
-        <div>
-          <img src={food} alt="dish" className={classes.image} />
-        </div>
-      </div>
+      </Container>
     </>
   );
 };
