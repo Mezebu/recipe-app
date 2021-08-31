@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import clsx from "clsx";
 //prettier-ignore
-import { Card, Grid, IconButton, CardHeader, CardMedia, CardContent, CardActions, Collapse, Typography,} from "@material-ui/core";
+import { Card, Grid, IconButton, CardHeader, CardMedia, CardContent, CardActions, Collapse, Typography} from "@material-ui/core";
 
 import Avatar from "@material-ui/core/Avatar";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
@@ -67,7 +67,8 @@ const Recipe = ({ dishType, calories, image, cuisine, ingredients, title, health
           </CardContent>
         </Collapse>
       </Card>
-    </Grid>
+      </Grid>
+     
   );
 };
 

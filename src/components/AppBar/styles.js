@@ -5,8 +5,10 @@ export const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   appBar: {
-    background: "linear-gradient(to right, #41295a, #2f0743)",
+    backgroundColor: "#0093E9",
+    backgroundImage: "linear-gradient(160deg, #0093E9 0%, #80D0C7 100%)",
   },
+
   menuButton: {
     marginRight: theme.spacing(2),
   },

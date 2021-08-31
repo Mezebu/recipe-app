@@ -26,14 +26,14 @@ const NavBar = ({ search, handleSearch, getSearch }) => {
               />
             </IconButton>
             <Typography className={classes.title} variant="h6" noWrap>
-              Ezeigwe's Kitchen
+              Ezeigwe's Food Recipe
             </Typography>
             <form className={classes.search} onSubmit={getSearch}>
               <div className={classes.searchIcon}>
                 <SearchIcon />
               </div>
               <InputBase
-                placeholder="Search Meal"
+                placeholder="Search Recipe"
                 classes={{
                   root: classes.inputRoot,
                   input: classes.inputInput,

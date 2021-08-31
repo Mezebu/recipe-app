@@ -3,7 +3,7 @@ import green from "@material-ui/core/colors/green";
 
 export const useStyles = makeStyles((theme) => ({
   root: {
-    background: "rgba( 255, 255, 255, 0.40 )",
+    background: "rgba( 255, 255, 255, 0.30 )",
     "&:hover": {
       background: "rgba(255, 255, 255, 0)",
       backdropFilter: "blur(4px)",

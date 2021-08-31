@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Grid, Container, ThemeProvider } from "@material-ui/core";
 
-import Recipe from "./components/Recipe/Recipe";
-import AppBar from "./components/AppBar/AppBar";
+import { Home, Recipe, AppBar } from "./components";
 
 import styles from "./App.module.css";
 import { theme } from "./components/styles";
@@ -53,6 +52,8 @@ const App = () => {
         />
         <div className={styles.spacing} />
         <Container>
+          <Home />
+          <div className={styles.spacing} />
           <Grid container spacing={2}>
             {recipes.map(({ recipe }) => (
               <Recipe
