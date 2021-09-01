@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Grid, Container, ThemeProvider, CssBaseline } from "@material-ui/core";
+import { Grid, Container, ThemeProvider, Paper } from "@material-ui/core";
 import { createTheme } from "@material-ui/core/styles";
 
 import { Home, Recipe, AppBar } from "./components";
@@ -10,7 +10,7 @@ import styles from "./App.module.css";
 const App = () => {
   const [recipes, setRecipes] = useState([]);
   const [search, setSearch] = useState("");
-  const [query, setQuery] = useState("rice");
+  const [query, setQuery] = useState("salad");
   const [darkMode, setDarkMode] = useState(false);
 
   const apiDetails = {
@@ -60,33 +60,34 @@ const App = () => {
   return (
     <div className={styles.App}>
       <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <AppBar
-          getSearch={getSearch}
-          handleSearch={handleSearch}
-          search={search}
-          themeToggler={themeToggler}
-          darkMode={darkMode}
-        />
-        <Container>
-          <div className={styles.spacing} />
-          <Home />
-          <div className={styles.spacing} />
-          <Grid container spacing={2}>
-            {recipes.map(({ recipe }) => (
-              <Recipe
-                key={recipe.label}
-                title={recipe.label}
-                calories={recipe.calories}
-                cuisine={recipe.cuisineType}
-                ingredients={recipe.ingredients}
-                image={recipe.image}
-                healthInfo={recipe.dietLabels}
-                dishType={recipe.dishType}
-              />
-            ))}
-          </Grid>
-        </Container>
+        <Paper>
+          <AppBar
+            getSearch={getSearch}
+            handleSearch={handleSearch}
+            search={search}
+            themeToggler={themeToggler}
+            darkMode={darkMode}
+          />
+          <Container>
+            <div className={styles.spacing} />
+            <Home />
+            <div className={styles.spacing} />
+            <Grid container spacing={2}>
+              {recipes.map(({ recipe }) => (
+                <Recipe
+                  key={recipe.label}
+                  title={recipe.label}
+                  calories={recipe.calories}
+                  cuisine={recipe.cuisineType}
+                  ingredients={recipe.ingredients}
+                  image={recipe.image}
+                  healthInfo={recipe.dietLabels}
+                  dishType={recipe.dishType}
+                />
+              ))}
+            </Grid>
+          </Container>
+        </Paper>
       </ThemeProvider>
     </div>
   );

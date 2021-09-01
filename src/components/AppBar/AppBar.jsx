@@ -1,14 +1,17 @@
 import React from "react";
 //prettier-ignore
-import { AppBar, Toolbar, IconButton, Typography, InputBase, Container, Switch,  } from "@material-ui/core";
+import { AppBar, Toolbar, IconButton, Typography, InputBase, Container } from "@material-ui/core";
 import LocalDiningIcon from "@material-ui/icons/LocalDining";
 import SearchIcon from "@material-ui/icons/Search";
+import Brightness7Icon from "@material-ui/icons/Brightness7";
+import Brightness4Icon from "@material-ui/icons/Brightness4";
 
 import { useStyles } from "./styles";
 
 // prettier-ignore
 const NavBar = ({ search, handleSearch, getSearch, darkMode, themeToggler }) => {
   const classes = useStyles();
+  const icon = !darkMode ? <Brightness4Icon /> : <Brightness7Icon />;
 
   return (
     <div className={classes.root}>
@@ -44,7 +47,18 @@ const NavBar = ({ search, handleSearch, getSearch, darkMode, themeToggler }) => 
                 onChange={handleSearch}
               />
             </form>
-            <Switch value={darkMode} onClick={themeToggler} color='primary' />
+            <div className={classes.themeIcon}>
+              <IconButton
+              edge="start"
+              onClick={themeToggler}
+              color="inherit"
+              aria-label="open drawer"
+            >
+              {icon}
+              </IconButton>
+            </div>
+            
+              
           </Toolbar>
         </Container>
       </AppBar>

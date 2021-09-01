@@ -8,7 +8,7 @@ export const useStyles = makeStyles({
   },
   image: {
     width: "40vw",
-    marginTop: "15px",
+    marginTop: "30px",
   },
   fonts: {
     fontFamily: "playball",

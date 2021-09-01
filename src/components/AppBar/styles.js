@@ -58,4 +58,7 @@ export const useStyles = makeStyles((theme) => ({
       },
     },
   },
+  themeIcon: {
+    paddingLeft: 20,
+  },
 }));
