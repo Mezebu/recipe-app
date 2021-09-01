@@ -1,25 +1,36 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Grid, Container, ThemeProvider } from "@material-ui/core";
+import { Grid, Container, ThemeProvider, CssBaseline } from "@material-ui/core";
+import { createTheme } from "@material-ui/core/styles";
 
 import { Home, Recipe, AppBar } from "./components";
 
 import styles from "./App.module.css";
-import { theme } from "./components/styles";
 
 const App = () => {
   const [recipes, setRecipes] = useState([]);
   const [search, setSearch] = useState("");
   const [query, setQuery] = useState("rice");
+  const [darkMode, setDarkMode] = useState(false);
 
   const apiDetails = {
     apiID: "dd901a11",
     apiKey: "8b93cfe3bd23593061a1a1c09ca83f06",
   };
 
-  const baseUrl = `https://api.edamam.com/search?q=${query}&app_id=${apiDetails.apiID}&app_key=${apiDetails.apiKey}`;
+  const theme = createTheme({
+    typography: {
+      fontFamily: ["Montserrat", "Nunito"].join(","),
+      fontSize: 13,
+    },
+    palette: {
+      type: darkMode ? "dark" : "light",
+    },
+  });
 
   const getRecipes = async () => {
+    const baseUrl = `https://api.edamam.com/search?q=${query}&app_id=${apiDetails.apiID}&app_key=${apiDetails.apiKey}`;
+
     try {
       const { data } = await axios.get(baseUrl);
       setRecipes(data.hits);
@@ -42,16 +53,23 @@ const App = () => {
     setQuery(search);
   };
 
+  const themeToggler = () => {
+    setDarkMode(!darkMode);
+  };
+
   return (
     <div className={styles.App}>
       <ThemeProvider theme={theme}>
+        <CssBaseline />
         <AppBar
           getSearch={getSearch}
           handleSearch={handleSearch}
           search={search}
+          themeToggler={themeToggler}
+          darkMode={darkMode}
         />
-        <div className={styles.spacing} />
         <Container>
+          <div className={styles.spacing} />
           <Home />
           <div className={styles.spacing} />
           <Grid container spacing={2}>

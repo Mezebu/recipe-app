@@ -8,9 +8,10 @@ export const useStyles = makeStyles({
   },
   image: {
     width: "40vw",
+    marginTop: "15px",
   },
   fonts: {
     fontFamily: "playball",
-    fontSize: "10vw",
+    fontSize: "8vw",
   },
 });

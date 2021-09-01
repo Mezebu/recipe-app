@@ -1,12 +1,13 @@
 import React from "react";
 //prettier-ignore
-import { AppBar, Toolbar, IconButton, Typography, InputBase, Container } from "@material-ui/core";
+import { AppBar, Toolbar, IconButton, Typography, InputBase, Container, Switch,  } from "@material-ui/core";
 import LocalDiningIcon from "@material-ui/icons/LocalDining";
 import SearchIcon from "@material-ui/icons/Search";
 
 import { useStyles } from "./styles";
 
-const NavBar = ({ search, handleSearch, getSearch }) => {
+// prettier-ignore
+const NavBar = ({ search, handleSearch, getSearch, darkMode, themeToggler }) => {
   const classes = useStyles();
 
   return (
@@ -43,6 +44,7 @@ const NavBar = ({ search, handleSearch, getSearch }) => {
                 onChange={handleSearch}
               />
             </form>
+            <Switch value={darkMode} onClick={themeToggler} color='primary' />
           </Toolbar>
         </Container>
       </AppBar>
