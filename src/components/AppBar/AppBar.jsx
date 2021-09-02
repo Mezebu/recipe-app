@@ -56,9 +56,7 @@ const NavBar = ({ search, handleSearch, getSearch, darkMode, themeToggler }) => 
             >
               {icon}
               </IconButton>
-            </div>
-            
-              
+            </div>       
           </Toolbar>
         </Container>
       </AppBar>
