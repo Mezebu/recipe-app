@@ -9,7 +9,13 @@ import Brightness4Icon from "@material-ui/icons/Brightness4";
 import { useStyles } from "./styles";
 
 // prettier-ignore
-const NavBar = ({ search, handleSearch, getSearch, darkMode, themeToggler }) => {
+const NavBar = ({
+  query,
+  handleSearch,
+  getRecipes,
+  darkMode,
+  themeToggler,
+}) => {
   const classes = useStyles();
   const icon = !darkMode ? <Brightness4Icon /> : <Brightness7Icon />;
 
@@ -32,7 +38,7 @@ const NavBar = ({ search, handleSearch, getSearch, darkMode, themeToggler }) => 
             <Typography className={classes.title} variant="h6" noWrap>
               Ezeigwe's Food Recipe
             </Typography>
-            <form className={classes.search} onSubmit={getSearch}>
+            <form className={classes.search} onSubmit={getRecipes}>
               <div className={classes.searchIcon}>
                 <SearchIcon />
               </div>
@@ -43,20 +49,20 @@ const NavBar = ({ search, handleSearch, getSearch, darkMode, themeToggler }) => 
                   input: classes.inputInput,
                 }}
                 inputProps={{ "aria-label": "search" }}
-                value={search}
+                value={query}
                 onChange={handleSearch}
               />
             </form>
             <div className={classes.themeIcon}>
               <IconButton
-              edge="start"
-              onClick={themeToggler}
-              color="inherit"
-              aria-label="open drawer"
-            >
-              {icon}
+                edge="start"
+                onClick={themeToggler}
+                color="inherit"
+                aria-label="open drawer"
+              >
+                {icon}
               </IconButton>
-            </div>       
+            </div>
           </Toolbar>
         </Container>
       </AppBar>

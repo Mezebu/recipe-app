@@ -14,4 +14,9 @@ export const useStyles = makeStyles({
     fontFamily: "playball",
     fontSize: "8vw",
   },
+  icon: {
+    position: "fixed",
+    left: " 50%",
+    top: "50%",
+  },
 });

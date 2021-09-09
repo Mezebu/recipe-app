@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { Grid, Container, ThemeProvider, Paper } from "@material-ui/core";
 import { createTheme } from "@material-ui/core/styles";
@@ -9,9 +9,9 @@ import styles from "./App.module.css";
 
 const App = () => {
   const [recipes, setRecipes] = useState([]);
-  const [search, setSearch] = useState("");
-  const [query, setQuery] = useState("salad");
+  const [query, setQuery] = useState("");
   const [darkMode, setDarkMode] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const apiDetails = {
     apiID: "dd901a11",
@@ -28,29 +28,24 @@ const App = () => {
     },
   });
 
-  const getRecipes = async () => {
+  const getRecipes = async (e) => {
     const baseUrl = `https://api.edamam.com/search?q=${query}&app_id=${apiDetails.apiID}&app_key=${apiDetails.apiKey}`;
 
     try {
+      e.preventDefault();
+      setLoading(true);
+      setQuery("");
+
       const { data } = await axios.get(baseUrl);
       setRecipes(data.hits);
-      setSearch("");
+      setLoading(false);
     } catch (error) {
       console.log(error);
     }
   };
 
-  useEffect(() => {
-    getRecipes();
-  }, [query]); // eslint-disable-line react-hooks/exhaustive-deps
-
   const handleSearch = (e) => {
-    setSearch(e.target.value);
-  };
-
-  const getSearch = (e) => {
-    e.preventDefault();
-    setQuery(search);
+    setQuery(e.target.value);
   };
 
   const themeToggler = () => {
@@ -62,30 +57,33 @@ const App = () => {
       <ThemeProvider theme={theme}>
         <Paper>
           <AppBar
-            getSearch={getSearch}
+            getRecipes={getRecipes}
             handleSearch={handleSearch}
-            search={search}
+            query={query}
             themeToggler={themeToggler}
             darkMode={darkMode}
           />
           <Container>
             <div className={styles.spacing} />
-            <Home />
+            {recipes && <Home loading={loading} />}
+
             <div className={styles.spacing} />
-            <Grid container spacing={2}>
-              {recipes.map(({ recipe }) => (
-                <Recipe
-                  key={recipe.label}
-                  title={recipe.label}
-                  calories={recipe.calories}
-                  cuisine={recipe.cuisineType}
-                  ingredients={recipe.ingredients}
-                  image={recipe.image}
-                  healthInfo={recipe.dietLabels}
-                  dishType={recipe.dishType}
-                />
-              ))}
-            </Grid>
+            {recipes && (
+              <Grid container spacing={2}>
+                {recipes.map(({ recipe }) => (
+                  <Recipe
+                    key={recipe.label}
+                    title={recipe.label}
+                    calories={recipe.calories}
+                    cuisine={recipe.cuisineType}
+                    ingredients={recipe.ingredients}
+                    image={recipe.image}
+                    healthInfo={recipe.dietLabels}
+                    dishType={recipe.dishType}
+                  />
+                ))}
+              </Grid>
+            )}
           </Container>
         </Paper>
       </ThemeProvider>
