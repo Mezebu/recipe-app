@@ -9,13 +9,7 @@ import Brightness4Icon from "@material-ui/icons/Brightness4";
 import { useStyles } from "./styles";
 
 // prettier-ignore
-const NavBar = ({
-  query,
-  handleSearch,
-  getRecipes,
-  darkMode,
-  themeToggler,
-}) => {
+const NavBar = ({ search, handleSearch, getSearch, darkMode, themeToggler }) => {
   const classes = useStyles();
   const icon = !darkMode ? <Brightness4Icon /> : <Brightness7Icon />;
 
@@ -38,7 +32,7 @@ const NavBar = ({
             <Typography className={classes.title} variant="h6" noWrap>
               Ezeigwe's Food Recipe
             </Typography>
-            <form className={classes.search} onSubmit={getRecipes}>
+            <form className={classes.search} onSubmit={getSearch}>
               <div className={classes.searchIcon}>
                 <SearchIcon />
               </div>
@@ -49,7 +43,7 @@ const NavBar = ({
                   input: classes.inputInput,
                 }}
                 inputProps={{ "aria-label": "search" }}
-                value={query}
+                value={search}
                 onChange={handleSearch}
               />
             </form>
