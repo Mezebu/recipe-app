@@ -8,9 +8,9 @@ import { Home, Recipe, AppBar } from "./components";
 import styles from "./App.module.css";
 
 const App = () => {
-  const [recipes, setRecipes] = useState([]);
   const [query, setQuery] = useState("salad");
   const [search, setSearch] = useState("");
+  const [recipes, setRecipes] = useState([]);
   const [darkMode, setDarkMode] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -36,6 +36,7 @@ const App = () => {
       setLoading(true);
 
       const { data } = await axios.get(baseUrl);
+
       setRecipes(data.hits);
       setLoading(false);
       setSearch("");
