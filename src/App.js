@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Grid, Container, ThemeProvider, Paper } from "@material-ui/core";
+import { Grid, Container, ThemeProvider, CssBaseline } from "@material-ui/core";
 import { createTheme } from "@material-ui/core/styles";
 
 import { Home, Recipe, AppBar } from "./components";
@@ -65,36 +65,35 @@ const App = () => {
   return (
     <div className={styles.App}>
       <ThemeProvider theme={theme}>
-        <Paper>
-          <AppBar
-            getSearch={getSearch}
-            handleSearch={handleSearch}
-            search={search}
-            themeToggler={themeToggler}
-            darkMode={darkMode}
-          />
-          <Container>
-            <div className={styles.spacing} />
-            <Home loading={loading} />
+        <CssBaseline />
+        <AppBar
+          getSearch={getSearch}
+          handleSearch={handleSearch}
+          search={search}
+          themeToggler={themeToggler}
+          darkMode={darkMode}
+        />
+        <Container>
+          <div className={styles.spacing} />
+          <Home loading={loading} />
 
-            <div className={styles.spacing} />
+          <div className={styles.spacing} />
 
-            <Grid container spacing={2}>
-              {recipes.map(({ recipe }) => (
-                <Recipe
-                  key={recipe.label}
-                  title={recipe.label}
-                  calories={recipe.calories}
-                  cuisine={recipe.cuisineType}
-                  ingredients={recipe.ingredients}
-                  image={recipe.image}
-                  healthInfo={recipe.dietLabels}
-                  dishType={recipe.dishType}
-                />
-              ))}
-            </Grid>
-          </Container>
-        </Paper>
+          <Grid container spacing={2}>
+            {recipes.map(({ recipe }) => (
+              <Recipe
+                key={recipe.label}
+                title={recipe.label}
+                calories={recipe.calories}
+                cuisine={recipe.cuisineType}
+                ingredients={recipe.ingredients}
+                image={recipe.image}
+                healthInfo={recipe.dietLabels}
+                dishType={recipe.dishType}
+              />
+            ))}
+          </Grid>
+        </Container>
       </ThemeProvider>
     </div>
   );
